@@ -1,0 +1,50 @@
+/**
+ * NVUE平台开发注意事项
+ * 1.nvue的css仅支持flex布局，是webview的css语法的子集。这是因为操作系统原生排版不支持非flex之外的web布局。当然flex足以排布出各种页面，只是写法需要适应。
+ * 2.在选择器方面支持的较少，只支持简单的class="classA"。
+ * 3.class 进行绑定时只支持数组语法。
+ * 4.不支持媒体查询
+ * 5.不支持复合样式，不支持简写
+ * 6.不能在 style 中引入字体文件
+ * 7.布局不能使用百分比，如width：100%；
+ * 8.有些web的css属性在nvue里无法支持，比如背景图。但可以使用image组件和层级来实现类似web中的背景效果。因为原生开发本身也没有web这种背景图概念
+ * 9.nvue 的各组件在安卓端默认是透明的，如果不设置background-color，可能会导致出现重影的问题
+ * 10.文字内容，必须只能在text组件下，text组件不能换行写内容，否则会出现无法去除的周边空白
+ * 11.只有text标签可以设置字体大小，字体颜色
+ */
+
+/**
+ * 样式文件后缀注意事项
+ * 如果报错找不到样式文件，很有可能是因为后缀名不是scss，因为css的导入只在最后使用的地方差量编译检查文件，
+ * 如果此时如果使用相对路径，很可能就找不到该样式文件，而scss的导入是直接使用原样式文件内容替换，因此不会存在
+ * 差量编译查找不到文件问题
+ */
+
+// 引入公共基础类
+@import "./color.scss";
+@import "./common.scss";
+@import "./iconfont.scss";
+
+// 过渡动画
+@import "./transition.scss";
+
+// 非nvue的样式
+/* #ifndef APP-NVUE */
+@import "./style.vue.scss";
+/* #endif */
+
+// nvue的特有样式
+/* #ifdef APP-NVUE */
+@import "./style.nvue.scss";
+/* #endif */
+
+// 小程序特有的样式
+/* #ifdef MP */
+@import "./style.mp.scss";
+/* #endif */
+
+// H5特有的样式
+/* #ifdef H5 */
+@import "./style.h5.scss";
+/* #endif */
+

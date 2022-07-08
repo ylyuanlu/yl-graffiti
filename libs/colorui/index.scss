@@ -1,0 +1,18 @@
+/**
+ * 注意：如果报错找不到样式文件，很有可能是因为后缀名不是scss，因为css的导入只在最后使用的地方差量编译检查文件，
+ * 如果此时如果使用相对路径，很可能就找不到该样式文件，而scss的导入是直接使用原样式文件内容替换，因此不会存在
+ * 差量编译查找不到文件问题
+ */
+
+/**
+ * 注意：APP-NVUE等同于APP-PLUS-NVUE，区别于APP-PLUS，只有在nvue页面（或被其导入）才会生效
+ */
+/* #ifndef APP-NVUE */
+@import './main.scss';
+
+// nvue不支持animation-*属性
+@import './animation.scss';
+
+// colorui图标库，nvue不支持content属性的图标库
+@import './icon.scss';
+/* #endif */

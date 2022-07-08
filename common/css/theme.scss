@@ -1,0 +1,88 @@
+/**
+ * 该颜色变量定义文件会被uni.scss导入，可在所有scss中使用
+ */
+
+/* ============================
+       颜色变量：来自colorui
+ ============================== */
+$color-red: #e54d42;
+$color-orange: #f37b1d;
+$color-yellow: #fbbd08;
+$color-olive: #8dc63f;
+$color-green: #39b54a;
+$color-cyan: #1cbbb4;
+$color-blue: #0081ff;
+$color-purple: #6739b6;
+$color-mauve: #9c26b0;
+$color-pink: #e03997;
+$color-brown: #a5673f;
+$color-grey: #8799a3;
+$color-gray: #aaaaaa;
+$color-black: #333333;
+$color-white: #ffffff;
+$color-red-light: #fadbd9;
+$color-orange-light: #fde6d2;
+$color-yellow-light: #fef2ce;
+$color-olive-light: #e8f4d9;
+$color-green-light: #d7f0db;
+$color-cyan-light: #d2f1f0;
+$color-blue-light: #cce6ff;
+$color-purple-light: #e1d7f0;
+$color-mauve-light: #ebd4ef;
+$color-pink-light: #f9d7ea;
+$color-brown-light: #ede1d9;
+$color-grey-light: #e7ebed;
+$color-gradual-red: linear-gradient(45deg, #f43f3b, #ec008c);
+$color-gradual-orange: linear-gradient(45deg, #ff9700, #ed1c24);
+$color-gradual-green: linear-gradient(45deg, #39b54a, #8dc63f);
+$color-gradual-purple: linear-gradient(45deg, #9000ff, #5e00ff);
+$color-gradual-pink: linear-gradient(45deg, #ec008c, #6739b6);
+$color-gradual-blue: linear-gradient(45deg, #0081ff, #1cbbb4);
+
+// 页面背景色
+$color-bg: #f3f4f6;
+$color-bg-light: #f8f8f8;
+$color-bg-dark: #eeeeee;
+
+// 暗黑和明亮模式背景颜色
+$color-dark-mode: #111111;
+$color-light-mode: #f8f8f8;
+
+// 边框颜色
+$color-border: #e4e7ed;
+
+// uview-ui
+$u-main-color: #303133;
+$u-content-color: #606266;
+$u-tips-color: #909399;
+$u-light-color: #c0c4cc;
+$u-border-color: #e4e7ed;
+$u-bg-color: #f3f4f6;
+
+$u-type-primary: #2979ff;
+$u-type-primary-light: #ecf5ff;
+$u-type-primary-disabled: #a0cfff;
+$u-type-primary-dark: #2b85e4;
+
+$u-type-warning: #ff9900;
+$u-type-warning-disabled: #fcbd71;
+$u-type-warning-dark: #f29100;
+$u-type-warning-light: #fdf6ec;
+
+$u-type-success: #19be6b;
+$u-type-success-disabled: #71d5a1;
+$u-type-success-dark: #18b566;
+$u-type-success-light: #dbf1e1;
+
+$u-type-error: #fa3534;
+$u-type-error-disabled: #fab6b6;
+$u-type-error-dark: #dd6161;
+$u-type-error-light: #fef0f0;
+
+$u-type-info: #909399;
+$u-type-info-disabled: #c8c9cc;
+$u-type-info-dark: #82848a;
+$u-type-info-light: #f4f4f5;
+
+$u-form-item-height: 70rpx;
+$u-form-item-border-color: #dcdfe6;

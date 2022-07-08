@@ -1,0 +1,108 @@
+/* 
+  Transition 过渡
+ */
+/* #ifndef APP-NVUE */
+/* Transition css */
+[class*=trans-] {
+	transition-duration: .5s;
+	transition-timing-function: ease;
+}
+
+/* #ifndef MP-WEIXIN */
+/**
+ * 动画延时和动画时长
+ */
+@for $i from 0 to 100 {
+    @if $i % 10 == 0 {
+        $var: $i * 10;
+        // 动画延时
+        [class*=trans-].delay-#{$var}ms {
+        	transition-delay: $var + ms !important;
+        }
+        // 动画时长
+        [class*=trans-].duration-#{$var}ms {
+        	transition-duration: $var + ms !important;
+        }
+    }
+}
+
+/**
+ * 时间函数
+ * linear, ease, ease-in, ease-out, ease-in-out
+ * 匀速，先慢后快（默认），低速开始，低速结束，低速开始和结束
+ */
+@each $var in linear, ease, ease-in, ease-out, ease-in-out {
+    [class*=trans-].trans-#{$var} {
+        transition-timing-function: $var !important;
+    }
+}
+
+/**
+ * 属性定义
+ */
+@each $var in width, height, opacity, color, background-color, top, left, right, bottom, transform, none, all {
+    .trans-#{$var} {
+        transition-property: $var !important;
+    }
+}
+/* #endif */
+/* #ifdef MP-WEIXIN */
+/**
+ * 属性定义
+ */
+@each $var in right, all {
+    .trans-#{$var} {
+        transition-property: $var !important;
+    }
+}
+/* #endif */
+/* #endif */
+
+/* #ifdef APP-NVUE */
+/* Transition css */
+@mixin mixin-transition {
+    transition-duration: .5s;
+    transition-timing-function: ease;
+}
+
+// 动画延时和动画时长
+@for $i from 0 to 100 {
+    @if $i % 10 == 0 {
+        $var: $i * 10;
+        // 动画延时
+        .trans-delay-#{$var}ms {
+        	transition-delay: $var + ms !important;
+        }
+        // 动画时长
+        .trans-duration-#{$var}ms {
+        	transition-duration: $var + ms !important;
+        }
+    }
+}
+
+/**
+ * 时间函数
+ * linear, ease, ease-in, ease-out, ease-in-out
+ * 匀速，先慢后快（默认），低速开始，低速结束，低速开始和结束
+ */
+@each $var in linear, ease, ease-in, ease-out, ease-in-out {
+    .trans-#{$var} {
+        transition-timing-function: $var !important;
+    }
+}
+
+/**
+ * 属性定义
+ */
+@each $var in width, height, opacity, color, background-color, top, left, right, bottom, transform {
+    .trans-#{$var} {
+        @include mixin-transition;
+        transition-property: $var !important;
+    }
+}
+
+.trans-all {
+    @include mixin-transition;
+    transition-property: width, height, opacity, background-color, top, left, right, bottom, transform !important;
+}
+/* #endif */

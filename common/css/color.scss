@@ -1,0 +1,117 @@
+/**
+ * 该颜色样式类定义文件会被index.scss导入使用
+ */
+
+// 如果在uni.scss中引入，这里则不必再导入
+@import "./theme.scss";
+
+/* ============================
+       颜色变量：来自colorui
+ ============================== */
+.color-red {
+    color: $color-red;
+}
+
+.color-orange {
+    color: $color-orange;
+}
+
+.color-yellow {
+    color: $color-yellow;
+}
+
+.color-olive {
+    color: $color-olive;
+}
+
+.color-green {
+    color: $color-green;
+}
+
+.color-cyan {
+    color: $color-cyan;
+}
+
+.color-blue {
+    color: $color-blue;
+}
+
+.color-purple {
+    color: $color-purple;
+}
+
+.color-mauve {
+    color: $color-mauve;
+}
+
+.color-pink {
+    color: $color-pink;
+}
+
+.color-brown {
+    color: $color-brown;
+}
+
+.color-grey {
+    color: $color-grey;
+}
+
+.color-gray {
+    color: $color-gray;
+}
+
+.color-black {
+    color: $color-black;
+}
+
+.color-white {
+    color: $color-white;
+}
+
+.color-red-light {
+    color: $color-red-light;
+}
+
+.color-orange-light {
+    color: $color-orange-light;
+}
+
+.color-yellow-light {
+    color: $color-yellow-light;
+}
+
+.color-olive-light {
+    color: $color-olive-light;
+}
+
+.color-green-light {
+    color: $color-green-light;
+}
+
+.color-cyan-light {
+    color: $color-cyan-light;
+}
+
+.color-blue-light {
+    color: $color-blue-light;
+}
+
+.color-purple-light {
+    color: $color-purple-light;
+}
+
+.color-mauve-light {
+    color: $color-mauve-light;
+}
+
+.color-pink-light {
+    color: $color-pink-light;
+}
+
+.color-brown-light {
+    color: $color-brown-light;
+}
+
+.color-grey-light {
+    color: $color-grey-light;
+}

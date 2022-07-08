@@ -1,0 +1,159 @@
+/**
+ * 通用样式，可通过该文件内的样式直接组合定义大部分视图的样式
+ */
+
+/** 
+ * 浏览器前缀说明
+ * -ms-		（IE 9）
+ * -moz-	（Firefox）
+ * -webkit-	（Safari 和 Chrome）
+ * -o-		（Opera）
+*/
+
+/* block */
+.block {
+	display: block !important;
+}
+
+/**
+ * 铺满父组件
+ */
+.fill-parent {
+	width: 100%;
+	height: 100%;
+}
+
+/* ==================
+          行高
+ ==================== */
+@each $key, $value in 06 0.6, 08 0.8, 1 1.0, 12 1.2, 14 1.4, 15 1.5, 16 1.6, 18 1.8, 2 2.0, 25 2.5, 3 3.0, 35 3.5, 4 4.0 {
+    .lh-#{$key} {
+    	line-height: $value !important;
+    }
+}
+
+/* =============================
+        宽高（百分比、最大最小）
+ =============================== */
+@for $i from 0 through 100 {
+    @if $i < 20 {
+        @if $i % 2 == 0 or $i % 5 == 0 {
+            .h-#{$i} {
+            	height: #{$i * 1%};
+            }
+            
+            .w-#{$i} {
+            	width: #{$i * 1%};
+            }
+            
+            .max-#{$i}vw {
+            	max-width: $i + vw !important;
+            }
+            
+            .min-#{$i}vw {
+            	min-width: $i + vw !important;
+            }
+            
+            .min-w-#{$i}p {
+            	min-width: $i + px !important;
+            }
+            
+            .max-#{$i}vh {
+            	max-height: $i + vh !important;
+            }
+            
+            .min-#{$i}vh {
+            	min-height: $i + vh !important;
+            }
+            
+            .min-h-#{$i}p {
+            	min-height: $i + px !important;
+            }
+        }
+    } @else {
+        @if $i % 5 == 0 or $i == 33 {
+            .h-#{$i} {
+            	height: #{$i * 1%};
+            }
+            
+            .w-#{$i} {
+            	width: #{$i * 1%};
+            }
+            
+            .max-#{$i}vw {
+            	max-width: $i + vw !important;
+            }
+            
+            .min-#{$i}vw {
+            	min-width: $i + vw !important;
+            }
+            
+            .min-w-#{$i}p {
+            	min-width: $i + px !important;
+            }
+            
+            .max-#{$i}vh {
+            	max-height: $i + vh !important;
+            }
+            
+            .min-#{$i}vh {
+            	min-height: $i + vh !important;
+            }
+            
+            .min-h-#{$i}p {
+            	min-height: $i + px !important;
+            }
+        }
+    }
+}
+
+/**
+ * 
+ */
+/* ==================
+        溢出省略
+ ==================== */
+.lines-1 {
+	max-width: 100%;
+	overflow: hidden !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+	word-break: break-all;
+}
+
+.lines-2 {
+    overflow: hidden;
+    // 用来限制在一个块元素显示的文本的行数。 
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    // 为了实现该效果，它需要组合其他的WebKit属性
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	word-break: break-all;
+}
+
+/**
+ * 换行规则
+ * break-word： 在长单词或 URL 地址内部进行换行
+ * normal: 只在允许的断字点换行
+ * anywhere: 以字符为最小元素做截断换行
+ * 注意：对nvue来说 anywhere 表示在以字符为最小元素做截断换行，其它值或不指定该属性，都以英文单词为单位进行换行。
+ */
+@each $value in break-word, normal, anywhere {
+    .text-wrap-#{$value} {
+        word-wrap: $value !important;
+    }
+}
+
+/* ==================
+          行高
+ ==================== */
+/**
+ * 只在vue中使用，在nvue中，line-height与字体大小font-size无关，如果赋予数值，单位默认为px
+ */
+@each $key, $value in 06 0.6, 08 0.8, 1 1.0, 12 1.2, 14 1.4, 16 1.6, 18 1.8, 2 2.0, 25 2.5, 3 3.0, 35 3.5, 4 4.0 {
+    .lh-#{$key} {
+    	line-height: $value !important;
+    }
+}

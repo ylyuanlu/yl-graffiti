@@ -1,0 +1,1122 @@
+/**
+ * nvue样式定义注意事项：
+ * 1.nvue的css仅支持flex布局，是webview的css语法的子集。这是因为操作系统原生排版不支持非flex之外的web布局。当然flex足以排布出各种页面，只是写法需要适应。
+ * 2.在选择器方面支持的较少，只支持简单的class="classA"。
+ * 3.class 进行绑定时只支持数组语法。
+ * 4.不支持媒体查询
+ * 5.不支持复合样式，不支持简写
+ * 6.不能在 style 中引入字体文件
+ * 7.布局不能使用百分比，如width：100%；
+ * 8.有些web的css属性在nvue里无法支持，比如背景图。但可以使用image组件和层级来实现类似web中的背景效果。因为原生开发本身也没有web这种背景图概念
+ * 9.nvue 的各组件在安卓端默认是透明的，如果不设置background-color，可能会导致出现重影的问题
+ * 10.文字内容，必须只能在text组件下，text组件不能换行写内容，否则会出现无法去除的周边空白
+ * 11.只有text标签可以设置字体大小，字体颜色
+ */
+
+// 如果在uni.scss中引入，这里则不必再导入
+// @import "./theme.scss";
+
+/* =======================================
+    uniapp页面节点，colorui对body节点配置
+    page节点在body内部，优先级更高
+ ========================================= */
+/* #ifndef APP-NVUE */
+page, // APP-NVUE不支持，注意不是APP-PLUS因此
+.page {
+    background-color: $color-light-mode;
+    font-size: 28rpx;
+    color: $u-main-color;
+    font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+/* #endif */
+/* #ifdef APP-NVUE */
+.page {
+    background-color: $color-dark-mode;
+    font-size: 28rpx;
+    color: $u-main-color;
+    font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+/* #endif */
+
+/* ==================
+          布局
+ ==================== */
+
+/*  -- flex弹性布局 -- */
+
+/* 在 nvue中，Flexbox 是默认且唯一的布局模型，所以你不需要手动为元素添加 display: flex; 属性 */
+/* #ifndef APP-NVUE */
+.flex {
+	display: flex !important;
+}
+/* #endif */
+
+.flex-row {
+    /* #ifndef APP-NVUE */
+    display: flex !important;
+    /* #endif */
+	flex-direction: row !important;
+}
+
+.flex-column {
+    /* #ifndef APP-NVUE */
+    display: flex !important;
+    /* #endif */
+	flex-direction: column !important;
+}
+
+.flex-center {
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+/* #ifndef MP-WEIXIN */ /* colorui main.scss 已定义 */
+@each $value in start, end, center {
+    .align-#{$value} {
+        @if $value == start or $value == end {
+            align-items: flex-#{$value} !important;
+        } @else {
+            align-items: $value !important;
+        }
+    }
+}
+
+@each $short, $long in start start, end end, center center, between space-between, around space-around {
+    .justify-#{$short} {
+        @if $short == start or $short == end {
+            justify-content: flex-#{$long} !important;
+        } @else {
+            justify-content: $long !important;
+        }
+    }
+}
+
+@each $value in wrap {
+    .flex-#{$value} {
+        flex-wrap: $value !important;
+    }
+}
+/* #endif */
+
+/**
+ * 定义flex等分
+ */
+@for $i from 0 through 4 {
+	.flex-#{$i} {
+		flex: $i !important;
+	}
+}
+
+/* =========================
+            width
+ =========================== */
+/**
+ * width = 750 * 元素在设计稿中的宽度 / 设计稿基准宽度
+ * 如：若设计稿宽度为 640px，元素 A 在设计稿上的宽度为 100px，那么元素A 
+ * 在 uni-app 里面的宽度应该设为：750 * 100 / 640，结果为：117rpx。
+ */
+.full-screen {
+    /* #ifndef APP-NVUE */
+	width: 100vw !important;
+	height: 100vh !important;
+    /* #endif */
+    /* #ifdef APP-NVUE */
+    /**
+     * 注意：vw和vh对nvue无效，设计主要是针对宽度，因此这里实现了宽度全屏适配，
+     * 高度需要获取系统windowHeight，然后通过style传入动态样式实现
+     */
+    width: 750rpx !important;
+    /* #endif */
+}
+
+@for $i from 0 to 20 {
+    @if $i % 2 == 0 {
+        .w-#{$i}p {
+            width: $i + px !important;
+        }
+        .w-#{$i}vw {
+            /* #ifdef APP-NVUE */
+            // nvue的宽度vw通过下面算法适配
+            width: $i * 750 / 100 + rpx !important;
+            /* #endif */
+            /* #ifndef APP-NVUE */
+            width: $i + vw !important;
+            /* #endif */
+        }
+    }
+}
+
+@for $i from 0 through 100 {
+    @if $i % 5 == 0 {
+        .w-#{$i}p {
+            width: $i + px !important;
+        }
+        .w-#{$i}vw {
+            /* #ifdef APP-NVUE */
+            width: $i * 750 / 100 + rpx !important;
+            /* #endif */
+            /* #ifndef APP-NVUE */
+            width: $i + vw !important;
+            /* #endif */
+        }
+    }
+}
+
+/* ==================
+        height
+ ==================== */
+@for $i from 0 to 20 {
+    @if $i % 2 == 0 {
+        .h-#{$i}p {
+            height: $i + px !important;
+        }
+        /* #ifndef APP-NVUE */
+        // nvue没有vh样式
+        .h-#{$i}vh {
+            height: $i + vh !important;
+        }
+        /* #endif */
+        .h-#{$i}vw {
+            /* #ifdef APP-NVUE */
+            // nvue的宽度vw通过下面算法适配
+            height: $i * 750 / 100 + rpx !important;
+            /* #endif */
+            /* #ifndef APP-NVUE */
+            height: $i + vw !important;
+            /* #endif */
+        }
+    }
+}
+
+@for $i from 0 through 100 {
+    @if $i % 5 == 0 {
+        .h-#{$i}p {
+            height: $i + px!important;
+        }
+        /* #ifndef APP-NVUE */
+        .h-#{$i}vh {
+        	height: $i + vh !important;
+        }
+        /* #endif */
+        .h-#{$i}vw {
+            /* #ifdef APP-NVUE */
+            // nvue的宽度vw通过下面算法适配
+            height: $i * 750 / 100 + rpx !important;
+            /* #endif */
+            /* #ifndef APP-NVUE */
+            height: $i + vw !important;
+            /* #endif */
+        }
+    }
+}
+
+.h-nav {
+    height: 45px !important;
+}
+
+.h-search,
+.h-tabbar {
+    height: 50px !important;
+}
+
+/* ==================
+        position
+ ==================== */
+@each $short, $long in abs absolute, rel relative, fixed fixed, sticky sticky {
+    .pos-#{$short} {
+    	position: $long !important;
+    }
+}
+
+/* ==================
+        字体大小
+ ==================== */
+@for $i from 4 to 30 {
+    .size-#{$i} {
+        font-size: $i * 2 + rpx !important;
+    }
+}
+ 
+@for $i from 30 to 50 {
+    @if $i % 2 == 0 or $i % 5 == 0 {
+        .size-#{$i} {
+            font-size: $i * 2 + rpx !important;
+        }
+    }
+}
+
+/* ===========================
+ *    背景色
+ * =========================== */
+ 
+.bg-color {
+	background-color: $u-bg-color !important;
+}
+
+.bg-light {
+	background-color: $color-bg-light !important;
+}
+
+.bg-dark {
+	background-color: $color-bg-dark !important;
+}
+
+.bg-transparent {
+	background-color: transparent;
+}
+
+// uview-ui主题色
+.bg-u-primary {
+    background-color: $u-type-primary !important;
+    color: $color-white !important;
+}
+
+.bg-u-primary-light {
+    background-color: $u-type-primary-light !important;
+}
+
+.bg-u-primary-disabled {
+    background-color: $u-type-primary-disabled !important;
+}
+
+.bg-u-primary-dark {
+    background-color: $u-type-primary-dark !important;
+    color: $color-white !important;
+}
+
+.bg-u-error {
+    background-color: $u-type-error !important;
+    color: $color-white !important;
+}
+
+.bg-u-error-light {
+    background-color: $u-type-error-light !important;
+}
+
+.bg-u-error-disabled {
+    background-color: $u-type-error-disabled !important;
+}
+
+.bg-u-error-dark {
+    background-color: $u-type-error-dark !important;
+    color: $color-white !important;
+}
+
+.bg-u-warning {
+    background-color: $u-type-warning !important;
+    color: $color-white !important;
+}
+
+.bg-u-warning-light {
+    background-color: $u-type-warning-light !important;
+}
+
+.bg-u-warning-disabled {
+    background-color: $u-type-warning-disabled !important;
+}
+
+.bg-u-warning-dark {
+    background-color: $u-type-warning-dark !important;
+    color: $color-white !important;
+}
+
+.bg-u-info {
+    background-color: $u-type-info !important;
+}
+
+.bg-u-info-light {
+    background-color: $u-type-info-light !important;
+}
+
+.bg-u-info-disabled {
+    background-color: $u-type-info-disabled !important;
+}
+
+.bg-u-info-dark {
+    background-color: $u-type-info-dark !important;
+}
+
+.bg-u-success {
+    background-color: $u-type-success !important;
+    color: $color-white !important;
+}
+
+.bg-u-success-light {
+    background-color: $u-type-success-light !important;
+}
+
+.bg-u-success-disabled {
+    background-color: $u-type-success-disabled !important;
+}
+
+.bg-u-success-dark {
+    background-color: $u-type-success-dark !important;
+    color: $color-white !important;
+}
+
+.bg-u-color {
+    background-color: $u-bg-color !important;
+}
+
+.bg-u-main {
+    background-color: $u-main-color !important;
+}
+
+.bg-u-content {
+    background-color: $u-content-color !important;
+}
+
+/* #ifndef MP-WEIXIN */
+.bg-gradual-red {
+    background-color: $color-gradual-red !important;
+}
+
+.bg-gradual-orange {
+    background-color: $color-gradual-orange !important;
+}
+
+.bg-gradual-green {
+    background-color: $color-gradual-red !important;
+}
+
+.bg-gradual-purple {
+    background-color: $color-gradual-red !important;
+}
+
+.bg-gradual-pink {
+    background-color: $color-gradual-red !important;
+}
+
+.bg-gradual-blue {
+    background-color: $color-gradual-red !important;
+}
+/* #endif */
+
+/* 字体颜色 */
+.text-u-primary {
+    color: $u-type-primary !important;
+}
+
+.text-u-primary-light {
+    color: $u-type-primary-light !important;
+}
+
+.text-u-primary-disabled {
+    color: $u-type-primary-disabled !important;
+}
+
+.text-u-primary-dark {
+    color: $u-type-primary-dark !important;
+}
+
+.text-u-error {
+    color: $u-type-error !important;
+}
+
+.text-u-error-light {
+    color: $u-type-error-light !important;
+}
+
+.text-u-error-disabled {
+    color: $u-type-error-disabled !important;
+}
+
+.text-u-error-dark {
+    color: $u-type-error-dark !important;
+}
+
+.text-u-warning {
+    color: $u-type-warning !important;
+}
+
+.text-u-warning-light {
+    color: $u-type-warning-light !important;
+}
+
+.text-u-warning-disabled {
+    color: $u-type-warning-disabled !important;
+}
+
+.text-u-warning-dark {
+    color: $u-type-warning-dark !important;
+}
+
+.text-u-info {
+    color: $u-type-info !important;
+}
+
+.text-u-info-light {
+    color: $u-type-info-light !important;
+}
+
+.text-u-info-disabled {
+    color: $u-type-info-disabled !important;
+}
+
+.text-u-info-dark {
+    color: $u-type-info-dark !important;
+}
+
+.text-u-success {
+    color: $u-type-success !important;
+}
+
+.text-u-success-light {
+    color: $u-type-success-light !important;
+}
+
+.text-u-success-disabled {
+    color: $u-type-success-disabled !important;
+}
+
+.text-u-success-dark {
+    color: $u-type-success-dark !important;
+}
+
+.text-u-main {
+    color: $u-main-color !important;
+}
+
+.text-u-content {
+    color: $u-content-color !important;
+}
+
+.text-u-minor {
+    color: $u-tips-color !important;
+}
+
+.text-u-light {
+    color: $u-light-color !important;
+}
+
+.transparent {
+	color: transparent !important;
+}
+
+/* =====================================
+ *          text
+ * ===================================== */
+.black {
+    color: black !important;
+}
+
+.bold,
+.text-bold {
+	font-weight: 700 !important;
+}
+
+.break,
+.text-break {
+    word-break: break-all !important;
+}
+
+/* #ifndef MP-WEIXIN */
+@each $value in left, right, center {
+    .text-#{$value} {
+        text-align: $value !important;
+    }
+}
+/* #endif */
+
+/* =====================================
+ *          边框弧度
+ * ===================================== */
+.circle,
+.radius-circle {
+	border-radius: 50% !important;
+}
+
+@for $i from 0 to 20 {
+    @if $i % 2 == 0 or $i % 5 == 0 {
+        .radius-#{$i} {
+            border-radius: $i * 2 + rpx !important;
+        }
+        
+        .radius-t-#{$i} {
+        	border-top-left-radius: $i * 2 + rpx !important;
+        	border-top-right-radius: $i * 2 + rpx !important;
+        }
+        
+        .radius-b-#{$i} {
+        	border-bottom-left-radius: $i * 2 + rpx !important;
+        	border-bottom-right-radius: $i * 2 + rpx !important;
+        }
+        
+        .radius-l-#{$i} {
+        	border-top-left-radius: $i * 2 + rpx !important;
+        	border-bottom-left-radius: $i * 2 + rpx !important;
+        }
+    }
+}
+
+@for $i from 20 through 50 {
+    @if $i % 5 == 0 {
+        .radius-#{$i} {
+            border-radius: $i * 2 + rpx !important;
+        }
+        
+        .radius-t-#{$i} {
+        	border-top-left-radius: $i * 2 + rpx !important;
+        	border-top-right-radius: $i * 2 + rpx !important;
+        }
+        
+        .radius-b-#{$i} {
+        	border-bottom-left-radius: $i * 2 + rpx !important;
+        	border-bottom-right-radius: $i * 2 + rpx !important;
+        }
+        
+        .radius-l-#{$i} {
+        	border-top-left-radius: $i * 2 + rpx !important;
+        	border-bottom-left-radius: $i * 2 + rpx !important;
+        }
+    }
+}
+
+/* ==================
+          边框
+ ==================== */
+@each $var in left, top, right, bottom {
+    .solid-#{$var}-light,
+    .border-#{$var}-light {
+        /* #ifdef APP-NVUE */
+        border-#{$var}-color: $u-border-color;
+        border-#{$var}-style: solid;
+        border-#{$var}-width: 0.5px;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        border-#{$var}: 0.5px solid $u-border-color;
+        /* #endif */
+    }
+    
+    .solid-#{$var}-lights,
+    .border-#{$var}-lights {
+        /* #ifdef APP-NVUE */
+        border-#{$var}-color: $u-type-info-light;
+        border-#{$var}-style: solid;
+        border-#{$var}-width: 0.5px;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        border-#{$var}: 0.5px solid $u-type-info-light;
+        /* #endif */
+    }
+    
+    .solids-#{$var}-light,
+    .borders-#{$var}-light {
+        /* #ifdef APP-NVUE */
+        border-#{$var}-color: $u-border-color;
+        border-#{$var}-style: solid;
+        border-#{$var}-width: 1px;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        border-#{$var}: 1px solid $u-border-color;
+        /* #endif */
+    }
+    
+    .solids-#{$var}-lights,
+    .borders-#{$var}-lights {
+        /* #ifdef APP-NVUE */
+        border-#{$var}-color: $u-type-info-light;
+        border-#{$var}-style: solid;
+        border-#{$var}-width: 1px;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        border-#{$var}: 1px solid $u-type-info-light;
+        /* #endif */
+    }
+    
+    .solid-#{$var},
+    .border-#{$var} {
+        /* #ifdef APP-NVUE */
+        border-#{$var}-color: $u-border-color;
+        border-#{$var}-style: solid;
+        border-#{$var}-width: 0.5px;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        border-#{$var}: 0.5px solid $u-border-color;
+        /* #endif */
+    }
+    
+    .solids-#{$var},
+    .borders-#{$var} {
+        /* #ifdef APP-NVUE */
+        border-#{$var}-color: $u-border-color;
+        border-#{$var}-style: solid;
+        border-#{$var}-width: 1px;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        border-#{$var}: 1px solid $u-border-color;
+        /* #endif */
+    }
+}
+
+.solid-tb-light,
+.border-tb-light {
+    @extend .border-top-light;
+    @extend .border-bottom-light;
+}
+
+.solid-tb-lights,
+.border-tb-lights {
+    @extend .border-top-lights;
+    @extend .border-bottom-lights;
+}
+
+.solid-lr-light,
+.border-lr-light {
+    @extend .border-left-light;
+    @extend .border-right-light;
+}
+
+.solid-lr-lights,
+.border-lr-lights {
+    @extend .border-left-lights;
+    @extend .border-right-lights;
+}
+
+.solid-light,
+.border-light {
+    @extend .border-tb-light;
+    @extend .border-lr-light;
+}
+
+.solid-lights,
+.border-lights {
+    @extend .border-tb-lights;
+    @extend .border-lr-lights;
+}
+
+.solids-tb-light,
+.borders-tb-light {
+    @extend .borders-top-light;
+    @extend .borders-bottom-light;
+}
+
+.solids-tb-lights,
+.borders-tb-lights {
+    @extend .borders-top-lights;
+    @extend .borders-bottom-lights;
+}
+
+.solids-lr-light,
+.borders-lr-light {
+	@extend .borders-left-light;
+	@extend .borders-right-light;
+}
+
+.solids-lr-lights,
+.borders-lr-lights {
+	@extend .borders-left-lights;
+	@extend .borders-right-lights;
+}
+
+.solids-light,
+.borders-light {
+    @extend .borders-tb-light;
+    @extend .borders-lr-light;
+}
+
+.solids-lights,
+.borders-lights {
+    @extend .borders-tb-lights;
+    @extend .borders-lr-lights;
+}
+
+.solid-tb,
+.border-tb {
+    @extend .border-top;
+    @extend .border-bottom;
+}
+
+.solid-lr,
+.border-lr {
+    @extend .border-left;
+    @extend .border-right;
+}
+
+.solid,
+.border {
+    @extend .border-tb;
+    @extend .border-lr;
+}
+
+.solids-tb,
+.borders-tb {
+    @extend .borders-top;
+    @extend .borders-bottom;
+}
+
+.solids-lr,
+.borders-lr {
+	@extend .borders-left;
+	@extend .borders-right;
+}
+
+.solids,
+.borders {
+    @extend .borders-tb;
+    @extend .borders-lr;
+}
+
+/* ==============================
+ *          内外边距
+ * ============================== */
+@for $i from 0 to 30 {
+    @if $i % 2 == 0 or $i % 5 == 0 {
+        .mg-#{$i} {
+        	margin: $i * 2 + rpx !important;
+        }
+        
+        .mgt-#{$i} {
+        	margin-top: $i * 2 + rpx !important;
+        }
+        
+        .mgl-#{$i} {
+        	margin-left: $i * 2 + rpx !important;
+        }
+        
+        .mgr-#{$i} {
+        	margin-right: $i * 2 + rpx !important;
+        }
+        
+        .mgb-#{$i} {
+        	margin-bottom: $i * 2 + rpx !important;
+        }
+        
+        .mgtb-#{$i} {
+        	margin-top: $i * 2 + rpx !important;
+        	margin-bottom: $i * 2 + rpx !important;
+        }
+        
+        .mglr-#{$i} {
+        	margin-left: $i * 2 + rpx !important;
+        	margin-right: $i * 2 + rpx !important;
+        }
+        
+        .pd-#{$i} {
+        	padding: $i * 2 + rpx !important;
+        }
+        
+        .pdt-#{$i} {
+        	padding-top: $i * 2 + rpx !important;
+        }
+        
+        .pdl-#{$i} {
+        	padding-left: $i * 2 + rpx !important;
+        }
+        
+        .pdr-#{$i} {
+        	padding-right: $i * 2 + rpx !important;
+        }
+        
+        .pdb-#{$i}, {
+        	padding-bottom: $i * 2 + rpx !important;
+        }
+        
+        .pdtb-#{$i} {
+        	padding-top: $i * 2 + rpx !important;
+        	padding-bottom: $i * 2 + rpx !important;
+        }
+        
+        .pdlr-#{$i} {
+        	padding-left: $i * 2 + rpx !important;
+        	padding-right: $i * 2 + rpx !important;
+        }
+    }
+}
+
+@for $i from 30 through 50 {
+    @if $i % 5 == 0 {
+        .mg-#{$i} {
+        	margin: $i * 2 + rpx !important;
+        }
+        
+        .mgt-#{$i} {
+        	margin-top: $i * 2 + rpx !important;
+        }
+        
+        .mgl-#{$i} {
+        	margin-left: $i * 2 + rpx !important;
+        }
+        
+        .mgr-#{$i} {
+        	margin-right: $i * 2 + rpx !important;
+        }
+        
+        .mgb-#{$i} {
+        	margin-bottom: $i * 2 + rpx !important;
+        }
+        
+        .mgtb-#{$i} {
+        	margin-top: $i * 2 + rpx !important;
+        	margin-bottom: $i * 2 + rpx !important;
+        }
+        
+        .mglr-#{$i} {
+        	margin-left: $i * 2 + rpx !important;
+        	margin-right: $i * 2 + rpx !important;
+        }
+        
+        .pd-#{$i} {
+        	padding: $i * 2 + rpx !important;
+        }
+        
+        .pdt-#{$i} {
+        	padding-top: $i * 2 + rpx !important;
+        }
+        
+        .pdl-#{$i} {
+        	padding-left: $i * 2 + rpx !important;
+        }
+        
+        .pdr-#{$i} {
+        	padding-right: $i * 2 + rpx !important;
+        }
+        
+        .pdb-#{$i} {
+        	padding-bottom: $i * 2 + rpx !important;
+        }
+        
+        .pdtb-#{$i} {
+        	padding-top: $i * 2 + rpx !important;
+        	padding-bottom: $i * 2 + rpx !important;
+        }
+        
+        .pdlr-#{$i} {
+        	padding-left: $i * 2 + rpx !important;
+        	padding-right: $i * 2 + rpx !important;
+        }
+    }
+}
+
+// top, bottom, left, right
+@for $i from 0 to 30 {
+    @if $i % 2 == 0 or $i % 5 == 0 {
+        /* #ifndef APP-NVUE */
+        .top-#{$i}vh {
+            top: $i + vh !important;
+        }
+        .bottom-#{$i}vh {
+        	bottom: $i + vh !important;
+        }
+        /* #endif */
+        .top-#{$i}p {
+            top: $i + px !important;
+        }
+        .bottom-#{$i}p {
+            bottom: $i + px !important;
+        }
+        .left-#{$i}p {
+            left: $i + px !important;
+        }
+        .right-#{$i}p {
+            right: $i + px !important;
+        }
+    }
+}
+
+@for $i from 30 through 50 {
+    @if $i % 5 == 0 {
+        /* #ifndef APP-NVUE */
+        .top-#{$i}vh {
+            top: $i + vh !important;
+        }
+        .bottom-#{$i}vh {
+        	bottom: $i + vh !important;
+        }
+        /* #endif */
+        
+        .top-#{$i} {
+        	top: $i * 2 + rpx !important;
+        }
+        
+        .bottom-#{$i} {
+        	bottom: $i * 2 + rpx !important;
+        }
+        
+        .top-#{$i}p {
+        	top: $i + px !important;
+        }
+        
+        .bottom-#{$i}p {
+        	bottom: $i + px !important;
+        }
+    }
+}
+
+@each $key, $value in 
+    nav 45, 
+    search 50, 
+    tabbar 50, 
+    double-nav 90, 
+    double-search 100, 
+    nav-search 95, 
+    double-nav-search 140, 
+    nav-tabbar 95,
+    search-tabbar 100, 
+    nav-search-tabbar 145,
+    double-nav-search-tabbar 190 {
+    .top-#{$key} {
+        top: $value + px !important;
+    }
+    
+    @for $i from 0 through 20 {
+        @if $i % 5 == 0 or $i % 2 == 0 {
+            .top-#{$i}vh-#{$key} {
+                top: calc(#{$i}vh + #{$value}px) !important;
+            }
+        }
+    }
+    
+    @for $i from 20 to 100 {
+        @if $i % 5 == 0 {
+            .top-#{$i}vh-#{$key} {
+                top: calc(#{$i}vh + #{$value}px) !important;
+            }
+        }
+    }
+    
+    /* #ifndef APP-NVUE */
+    .h-excluded-#{$key} {
+        height: calc(100vh - #{$value}px) !important;
+    }
+    
+    @for $i from 50 to 100 {
+        @if $i % 5 == 0 {
+            .h-#{$i}vh-excluded-#{$key} {
+                height: calc(#{$i}vh - #{$value}px) !important;
+            }
+        }
+    }
+    /* #endif */
+}
+
+.h-tab {
+    height: 90rpx !important;
+}
+
+.top-tab {
+    top: 90rpx !important;
+}
+
+.top-search {
+	top: 50px !important;
+}
+
+.top-tab-bar {
+    top: 96rpx !important;
+}
+
+.h-excluded-tab {
+    height: calc(100vh - 90rpx) !important;
+}
+
+.h-excluded-tab-bar {
+    height: calc(100vh - 96rpx) !important;
+}
+
+.h-excluded-nav-tab {
+    height: calc(100vh - 90rpx - 45px) !important;
+}
+
+.h-excluded-tab-tabbar,
+.h-excluded-tab-search {
+    height: calc(100vh - 90rpx - 50px) !important;
+}
+
+.h-excluded-search {
+    height: calc(100vh - 50px ) !important;
+}
+
+/* ==================
+          正方形
+ ==================== */
+@for $i from 0 to 20 {
+    .square-#{$i}vw {
+        /* #ifdef APP-NVUE */
+        width: $i * 750 / 100 + rpx !important;
+        height: $i * 750 / 100 + rpx !important;
+        /* #endif */
+        /* #ifndef APP-NVUE */
+        width: $i + vw !important;
+    	height: $i + vw !important;
+        /* #endif */
+    }
+}
+
+@for $i from 20 through 30 {
+    @if $i % 5 == 0 {
+        .square-#{$i}vw {
+        	/* #ifdef APP-NVUE */
+        	width: $i * 750 / 100 + rpx !important;
+        	height: $i * 750 / 100 + rpx !important;
+        	/* #endif */
+        	/* #ifndef APP-NVUE */
+        	width: $i + vw !important;
+        	height: $i + vw !important;
+        	/* #endif */
+        }
+    }
+}
+
+.square-10p {
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.square-20p {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* ==================
+        z-index
+ ==================== */
+// popup包含popup，actionsheet，keyboard，picker的值
+@each $key, $value in no-network 10090, popup 10075, mask 10070, navbar 980, top-tips 975, sticky 970, index-list-sticky 965  {
+    .z-#{$key} {
+    	z-index: $value !important;
+    }
+}
+
+/* ==================
+        透明
+ ==================== */
+@for $var from 0 through 10 {
+    @if $var == 0 {
+        .opacity-0 {
+        	opacity: 0 !important;
+        }
+    } @else if $var == 10 {
+        .opacity-1 {
+        	opacity: 1 !important;
+        }
+    } @else {
+        .opacity-0#{$var} {
+        	opacity: $var / 10 !important;
+        }
+    } 
+}
+
+/* ==================
+        旋转
+ ==================== */
+@each $var in 45, 90, 135, 180, 225, 270, 315 {
+    .transform-#{$var} {
+        transform: rotate(#{$var}deg);
+    }
+}
+
+.overflow-hidden {
+    overflow: hidden
+}
+
+/**
+ * 给view加点击反馈样式 只需加class名btn-active
+ */
+.btn-active:active{
+	opacity: 0.5;  
+}
+
+[type="search"]::-webkit-search-decoration {  
+	display: none;  
+}

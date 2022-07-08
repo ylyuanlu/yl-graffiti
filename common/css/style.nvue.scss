@@ -1,0 +1,803 @@
+/* ==============================================
+        背景：这部分内容非APP-NVUE由colorui提供
+ ============================================== */
+.bg-red {
+	background-color: $color-red !important;
+	color: $color-white !important;
+}
+
+.bg-orange {
+	background-color: $color-orange !important;
+	color: $color-white !important;
+}
+
+.bg-yellow {
+	background-color: $color-yellow !important;
+	color: $color-white !important;
+}
+
+.bg-olive {
+	background-color: $color-olive !important;
+	color: $color-white !important;
+}
+
+.bg-green {
+	background-color: $color-green !important;
+	color: $color-white !important;
+}
+
+.bg-cyan {
+	background-color: $color-cyan !important;
+	color: $color-white !important;
+}
+
+.bg-blue {
+	background-color: $color-blue !important;
+	color: $color-white !important;
+}
+
+.bg-purple {
+	background-color: $color-purple !important;
+	color: $color-white !important;
+}
+
+.bg-mauve {
+	background-color: $color-mauve !important;
+	color: $color-white !important;
+}
+
+.bg-pink {
+	background-color: $color-pink !important;
+	color: $color-white !important;
+}
+
+.bg-brown {
+	background-color: $color-brown !important;
+	color: $color-white !important;
+}
+
+.bg-grey {
+	background-color: $color-grey !important;
+	color: $color-white !important;
+}
+
+.bg-gray {
+	background-color: #f0f0f0 !important;
+	color: #666 !important;
+}
+
+.bg-black {
+	background-color: $color-black !important;
+	color: $color-white !important;
+}
+
+.bg-white {
+	background-color: $color-white !important;
+	color: #666 !important;
+}
+
+.bg-shadeTop {
+	background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01)) !important;
+	color: $color-white !important;
+}
+
+.bg-shadeBottom {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1)) !important;
+	color: $color-white !important;
+}
+
+.bg-gradual-red {
+	background-image: $color-gradual-red !important;
+	color: $color-white !important;
+}
+
+.bg-gradual-orange {
+	background-image: $color-gradual-orange !important;
+	color: $color-white !important;
+}
+
+.bg-gradual-green {
+	background-image: $color-gradual-green !important;
+	color: $color-white !important;
+}
+
+.bg-gradual-purple {
+	background-image: $color-gradual-purple !important;
+	color: $color-white !important;
+}
+
+.bg-gradual-pink {
+	background-image: $color-gradual-pink !important;
+	color: $color-white !important;
+}
+
+.bg-gradual-blue {
+	background-image: $color-gradual-blue !important;
+	color: $color-white !important;
+}
+
+// light颜色color使用复合样式，nvue页面请使用下面样式类
+.bg-red-light {
+	color: $color-red !important;
+	background-color: $color-red-light !important;
+}
+
+.bg-orange-light {
+	color: $color-orange !important;
+	background-color: $color-orange-light !important;
+}
+
+.bg-yellow-light {
+	color: $color-yellow !important;
+	background-color: $color-yellow-light !important;
+}
+
+.bg-olive-light {
+	color: $color-olive !important;
+	background-color: $color-olive-light !important;
+}
+
+.bg-green-light {
+	color: $color-green !important;
+	background-color: $color-green-light !important;
+}
+
+.bg-cyan-light {
+	color: $color-cyan !important;
+	background-color: $color-cyan-light !important;
+}
+
+.bg-blue-light {
+	color: $color-blue !important;
+	background-color: $color-blue-light !important;
+}
+
+.bg-purple-light {
+	color: $color-purple !important;
+	background-color: $color-purple-light !important;
+}
+
+.bg-mauve-light {
+	color: $color-mauve !important;
+	background-color: $color-mauve-light !important;
+}
+
+.bg-pink-light {
+	color: $color-pink !important;
+	background-color: $color-pink-light !important;
+}
+
+.bg-brown-light {
+	color: $color-brown !important;
+	background-color: $color-brown-light !important;
+}
+
+.bg-grey-light {
+	color: $color-grey !important;
+	background-color: $color-grey-light !important;
+}
+
+.line-red::after,
+.lines-red::after {
+	border-color: $color-red !important;
+}
+
+.line-orange::after,
+.lines-orange::after {
+	border-color: $color-orange !important;
+}
+
+.line-yellow::after,
+.lines-yellow::after {
+	border-color: $color-yellow !important;
+}
+
+.line-olive::after,
+.lines-olive::after {
+	border-color: $color-olive !important;
+}
+
+.line-green::after,
+.lines-green::after {
+	border-color: $color-green !important;
+}
+
+.line-cyan::after,
+.lines-cyan::after {
+	border-color: $color-cyan !important;
+}
+
+.line-blue::after,
+.lines-blue::after {
+	border-color: $color-blue !important;
+}
+
+.line-purple::after,
+.lines-purple::after {
+	border-color: $color-purple !important;
+}
+
+.line-mauve::after,
+.lines-mauve::after {
+	border-color: $color-mauve !important;
+}
+
+.line-pink::after,
+.lines-pink::after {
+	border-color: $color-pink !important;
+}
+
+.line-brown::after,
+.lines-brown::after {
+	border-color: $color-brown !important;
+}
+
+.line-grey::after,
+.lines-grey::after {
+	border-color: $color-grey !important;
+}
+
+.line-gray::after,
+.lines-gray::after {
+	border-color: $color-gray !important;
+}
+
+.line-black::after,
+.lines-black::after {
+	border-color: $color-black !important;
+}
+
+.line-white::after,
+.lines-white::after {
+	border-color: $color-white !important;
+}
+
+/* ==================
+          文本
+ ==================== */
+.text-xs {
+	font-size: 20rpx !important;
+}
+
+.text-sm {
+	font-size: 24rpx !important;
+}
+
+.text-df {
+	font-size: 28rpx !important;
+}
+
+.text-nm {
+	font-size: 30rpx !important;
+}
+
+.text-lg {
+	font-size: 32rpx !important;
+}
+
+.text-xl {
+	font-size: 36rpx !important;
+}
+
+.text-xxl {
+	font-size: 44rpx !important;
+}
+
+.text-sl {
+	font-size: 80rpx !important;
+}
+
+.text-xsl {
+	font-size: 120rpx !important;
+}
+
+.text-bold {
+	font-weight: bold !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.text-content {
+	line-height: 1.6 !important;
+}
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+.text-red,
+.line-red,
+.lines-red {
+	color: $color-red !important;
+}
+
+.text-red-light,
+.line-red-light,
+.lines-red-light {
+	color: $color-red-light !important;
+}
+
+.text-orange,
+.line-orange,
+.lines-orange {
+	color: $color-orange !important;
+}
+
+.text-orange-light,
+.line-orange-light,
+.lines-orange-light {
+	color: $color-orange-light !important;
+}
+
+.text-yellow,
+.line-yellow,
+.lines-yellow {
+	color: $color-yellow !important;
+}
+
+.text-yellow-light,
+.line-yellow-light,
+.lines-yellow-light {
+	color: $color-yellow-light !important;
+}
+
+.text-olive,
+.line-olive,
+.lines-olive {
+	color: $color-olive !important;
+}
+
+.text-olive-light,
+.line-olive-light,
+.lines-olive-light {
+	color: $color-olive-light !important;
+}
+
+.text-green,
+.line-green,
+.lines-green {
+	color: $color-green !important;
+}
+
+.text-green-light,
+.line-green-light,
+.lines-green-light {
+	color: $color-green-light !important;
+}
+
+.text-cyan,
+.line-cyan,
+.lines-cyan {
+	color: $color-cyan !important;
+}
+
+.text-cyan-light,
+.line-cyan-light,
+.lines-cyan-light {
+	color: $color-cyan-light !important;
+}
+
+.text-blue,
+.line-blue,
+.lines-blue {
+	color: $color-blue !important;
+}
+
+.text-blue-light,
+.line-blue-light,
+.lines-blue-light {
+	color: $color-blue-light !important;
+}
+
+.text-purple,
+.line-purple,
+.lines-purple {
+	color: $color-purple !important;
+}
+
+.text-purple-light,
+.line-purple-light,
+.lines-purple-light {
+	color: $color-purple-light !important;
+}
+
+.text-mauve,
+.line-mauve,
+.lines-mauve {
+	color: $color-mauve !important;
+}
+
+.text-mauve-light,
+.line-mauve-light,
+.lines-mauve-light {
+	color: $color-mauve-light !important;
+}
+
+.text-pink,
+.line-pink,
+.lines-pink {
+	color: $color-pink !important;
+}
+
+.text-pink-light,
+.line-pink-light,
+.lines-pink-light {
+	color: $color-pink-light !important;
+}
+
+.text-brown,
+.line-brown,
+.lines-brown {
+	color: $color-brown !important;
+}
+
+.text-brown-light,
+.line-brown-light,
+.lines-brown-light {
+	color: $color-brown-light !important;
+}
+
+.text-grey,
+.line-grey,
+.lines-grey {
+	color: $color-grey !important;
+}
+
+.text-grey-light,
+.line-grey-light,
+.lines-grey-light {
+	color: $color-grey-light !important;
+}
+
+.text-gray,
+.line-gray,
+.lines-gray {
+	color: $color-gray !important;
+}
+
+.text-black,
+.line-black,
+.lines-black {
+	color: $color-black !important;
+}
+
+.text-white,
+.line-white,
+.lines-white {
+	color: $color-white !important;
+}
+
+/* ============================
+ *          内外边距
+ * ============================ */
+
+.margin-0 {
+	margin: 0 !important;
+}
+
+.margin-xs {
+	margin: 10rpx !important;
+}
+
+.margin-sm {
+	margin: 20rpx !important;
+}
+
+.margin {
+	margin: 30rpx !important;
+}
+
+.margin-lg {
+	margin: 40rpx !important;
+}
+
+.margin-xl {
+	margin: 50rpx !important;
+}
+
+.margin-top-xs {
+	margin-top: 10rpx !important;
+}
+
+.margin-top-sm {
+	margin-top: 20rpx !important;
+}
+
+.margin-top {
+	margin-top: 30rpx !important;
+}
+
+.margin-top-lg {
+	margin-top: 40rpx !important;
+}
+
+.margin-top-xl {
+	margin-top: 50rpx !important;
+}
+
+.margin-right-xs {
+	margin-right: 10rpx !important;
+}
+
+.margin-right-sm {
+	margin-right: 20rpx !important;
+}
+
+.margin-right {
+	margin-right: 30rpx !important;
+}
+
+.margin-right-lg {
+	margin-right: 40rpx !important;
+}
+
+.margin-right-xl {
+	margin-right: 50rpx !important;
+}
+
+.margin-bottom-xs {
+	margin-bottom: 10rpx !important;
+}
+
+.margin-bottom-sm {
+	margin-bottom: 20rpx !important;
+}
+
+.margin-bottom {
+	margin-bottom: 30rpx !important;
+}
+
+.margin-bottom-lg {
+	margin-bottom: 40rpx !important;
+}
+
+.margin-bottom-xl {
+	margin-bottom: 50rpx !important;
+}
+
+.margin-left-xs {
+	margin-left: 10rpx !important;
+}
+
+.margin-left-sm {
+	margin-left: 20rpx !important;
+}
+
+.margin-left {
+	margin-left: 30rpx !important;
+}
+
+.margin-left-lg {
+	margin-left: 40rpx !important;
+}
+
+.margin-left-xl {
+	margin-left: 50rpx !important;
+}
+
+.margin-lr-xs {
+	margin-left: 10rpx !important;
+	margin-right: 10rpx !important;
+}
+
+.margin-lr-sm {
+	margin-left: 20rpx !important;
+	margin-right: 20rpx !important;
+}
+
+.margin-lr {
+	margin-left: 30rpx !important;
+	margin-right: 30rpx !important;
+}
+
+.margin-lr-lg {
+	margin-left: 40rpx !important;
+	margin-right: 40rpx !important;
+}
+
+.margin-lr-xl {
+	margin-left: 50rpx !important;
+	margin-right: 50rpx !important;
+}
+
+.margin-tb-xs {
+	margin-top: 10rpx !important;
+	margin-bottom: 10rpx !important;
+}
+
+.margin-tb-sm {
+	margin-top: 20rpx !important;
+	margin-bottom: 20rpx !important;
+}
+
+.margin-tb {
+	margin-top: 30rpx !important;
+	margin-bottom: 30rpx !important;
+}
+
+.margin-tb-lg {
+	margin-top: 40rpx !important;
+	margin-bottom: 40rpx !important;
+}
+
+.margin-tb-xl {
+	margin-top: 50rpx !important;
+	margin-bottom: 50rpx !important;
+}
+
+.padding-0 {
+	padding: 0 !important;
+}
+
+.padding-xs {
+	padding: 10rpx !important;
+}
+
+.padding-sm {
+	padding: 20rpx !important;
+}
+
+.padding {
+	padding: 30rpx !important;
+}
+
+.padding-lg {
+	padding: 40rpx !important;
+}
+
+.padding-xl {
+	padding: 50rpx !important;
+}
+
+.padding-top-xs {
+	padding-top: 10rpx !important;
+}
+
+.padding-top-sm {
+	padding-top: 20rpx !important;
+}
+
+.padding-top {
+	padding-top: 30rpx !important;
+}
+
+.padding-top-lg {
+	padding-top: 40rpx !important;
+}
+
+.padding-top-xl {
+	padding-top: 50rpx !important;
+}
+
+.padding-right-xs {
+	padding-right: 10rpx !important;
+}
+
+.padding-right-sm {
+	padding-right: 20rpx !important;
+}
+
+.padding-right {
+	padding-right: 30rpx !important;
+}
+
+.padding-right-lg {
+	padding-right: 40rpx !important;
+}
+
+.padding-right-xl {
+	padding-right: 50rpx !important;
+}
+
+.padding-bottom-xs {
+	padding-bottom: 10rpx !important;
+}
+
+.padding-bottom-sm {
+	padding-bottom: 20rpx !important;
+}
+
+.padding-bottom {
+	padding-bottom: 30rpx !important;
+}
+
+.padding-bottom-lg {
+	padding-bottom: 40rpx !important;
+}
+
+.padding-bottom-xl {
+	padding-bottom: 50rpx !important;
+}
+
+.padding-left-xs {
+	padding-left: 10rpx !important;
+}
+
+.padding-left-sm {
+	padding-left: 20rpx !important;
+}
+
+.padding-left {
+	padding-left: 30rpx !important;
+}
+
+.padding-left-lg {
+	padding-left: 40rpx !important;
+}
+
+.padding-left-xl {
+	padding-left: 50rpx !important;
+}
+
+.padding-lr-xs {
+	padding-left: 10rpx !important;
+	padding-right: 10rpx !important;
+}
+
+.padding-lr-sm {
+	padding-left: 20rpx !important;
+	padding-right: 20rpx !important;
+}
+
+.padding-lr {
+	padding-left: 30rpx !important;
+	padding-right: 30rpx !important;
+}
+
+.padding-lr-lg {
+	padding-left: 40rpx !important;
+	padding-right: 40rpx !important;
+}
+
+.padding-lr-xl {
+	padding-left: 50rpx !important;
+	padding-right: 50rpx !important;
+}
+
+.padding-tb-xs {
+	padding-top: 10rpx !important;
+	padding-bottom: 10rpx !important;
+}
+
+.padding-tb-sm {
+	padding-top: 20rpx !important;
+	padding-bottom: 20rpx !important;
+}
+
+.padding-tb {
+	padding-top: 30rpx !important;
+	padding-bottom: 30rpx !important;
+}
+
+.padding-tb-lg {
+	padding-top: 40rpx !important;
+	padding-bottom: 40rpx !important;
+}
+
+.padding-tb-xl {
+	padding-top: 50rpx !important;
+	padding-bottom: 50rpx !important;
+}
+
+.round {
+	border-radius: 5000rpx !important;
+}
+
+.radius {
+	border-radius: 8rpx !important;
+}
+
+/* ==================
+          行数
+ ==================== */
+@for $i from 0 through 3 {
+    .lines-#{$i} {
+        lines: $i !important;
+    }
+}
